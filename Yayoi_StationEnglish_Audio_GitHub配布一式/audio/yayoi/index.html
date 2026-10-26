@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Station English">
+<meta name="theme-color" content="#F5CF5B">
+<title>Yayoi's Station English｜Audio</title>
+<style>
+  :root{--cream:#FBF8F1;--navy:#1F3A5F;--text:#2B3A4A;--sub:#7B8794;--line:#E6E0D4;
+        --yellow:#F5CF5B;--yellowPale:#FFF3CC;--coral:#E8846B;--coralPale:#FDE7E0;--sky:#63B3D8;--skyPale:#E4F3FA;--mint:#8FD0B4;--mintPale:#E3F5EC;}
+  *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
+  html,body{background:var(--cream);color:var(--text);font-family:"Hiragino Kaku Gothic ProN","Noto Sans JP","Yu Gothic",system-ui,sans-serif;line-height:1.6;}
+  body{padding-bottom:calc(150px + env(safe-area-inset-bottom));}
+  .bar{height:8px;background:var(--yellow);}
+  header{padding:18px 18px 10px;}
+  .logo{display:flex;align-items:center;gap:8px;font-size:11px;letter-spacing:.25em;font-weight:700;color:var(--navy);}
+  .logo .s{width:24px;height:24px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;letter-spacing:0;}
+  h1{font-size:24px;font-weight:800;color:var(--navy);line-height:1.2;margin-top:12px;}
+  .sub{font-size:12px;color:var(--sub);margin-top:4px;}
+  .howto{margin:12px 18px 0;background:var(--yellowPale);border-radius:12px;padding:10px 14px;font-size:12.5px;line-height:1.7;}
+  .howto b{color:var(--navy);}
+  .all{margin:14px 18px 0;background:#fff;border:1.5px solid var(--navy);border-radius:14px;padding:12px 14px;display:flex;align-items:center;gap:12px;cursor:pointer;}
+  .all .ic{width:40px;height:40px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+  .all .t{font-weight:800;color:var(--navy);font-size:15px;}
+  .all .d{font-size:11.5px;color:var(--sub);}
+  .all.playing{background:var(--skyPale);}
+  section{margin:18px 18px 0;}
+  .topic{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 8px;margin:16px 0 6px;}
+  .topic .no{font-size:10px;letter-spacing:.18em;font-weight:700;color:var(--coral);white-space:nowrap;}
+  .topic .en{font-size:15px;font-weight:800;color:var(--navy);}
+  .topic .jp{font-size:11px;color:var(--sub);display:block;width:100%;}
+  .tr{background:#fff;border:1px solid var(--line);border-radius:12px;padding:10px 12px;display:flex;align-items:center;gap:10px;margin-bottom:6px;cursor:pointer;user-select:none;}
+  .tr .n{min-width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:12px;color:#fff;background:var(--sky);flex-shrink:0;}
+  .tr.lr .n{background:var(--coral);}
+  .tr .lab{flex:1;min-width:0;}
+  .tr .lab .k{font-size:14px;font-weight:700;color:var(--navy);}
+  .tr .lab .g{font-size:11px;color:var(--sub);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .tr .len{font-size:11px;color:var(--sub);}
+  .tr.playing{background:var(--skyPale);border-color:var(--sky);}
+  .tr.playing .n::after{content:"▶";font-size:11px;}
+  .tr.playing .n span{display:none;}
+  /* player */
+  .player{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1.5px solid var(--line);padding:10px 16px calc(12px + env(safe-area-inset-bottom));box-shadow:0 -4px 16px rgba(31,58,95,.08);}
+  .now{display:flex;align-items:baseline;gap:8px;}
+  .now .nt{font-size:14px;font-weight:800;color:var(--navy);flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .now .tm{font-size:11px;color:var(--sub);font-variant-numeric:tabular-nums;}
+  .seek{width:100%;margin:6px 0 4px;accent-color:var(--navy);height:22px;}
+  .ctl{display:flex;align-items:center;justify-content:space-between;gap:6px;}
+  .btn{border:1.5px solid var(--line);background:#fff;border-radius:999px;padding:8px 12px;font-size:12px;font-weight:700;color:var(--navy);cursor:pointer;}
+  .btn.on{background:var(--yellow);border-color:var(--yellow);}
+  .btn.big{width:56px;height:56px;padding:0;border-radius:50%;background:var(--navy);color:#fff;font-size:20px;border:none;display:flex;align-items:center;justify-content:center;}
+  .btn.ico{width:44px;height:44px;padding:0;font-size:16px;display:flex;align-items:center;justify-content:center;}
+  .hint{font-size:10.5px;color:var(--sub);text-align:center;margin-top:6px;}
+  footer{margin:28px 18px 0;font-size:10.5px;color:var(--sub);text-align:center;}
+</style>
+</head>
+<body>
+<div class="bar"></div>
+<header>
+  <div class="logo"><span class="s">S</span>STAGE LINE</div>
+  <h1>Yayoi's Station English<br><span style="font-size:15px;color:var(--sky);">Audio 01–28</span></h1>
+  <div class="sub">外国人のお客様に、古川駅から目的地までの行き方を案内する2週間トレーニング</div>
+</header>
+<div class="howto"><b>使い方</b>｜トラックをタップすると再生。<b>画面を消しても再生は続き、ロック画面から停止・次へができます。</b>Listen &amp; Respond（赤）は「ループ」をONにして、ポーズで声に出す練習を繰り返してください。</div>
+
+<div class="all" id="allBtn">
+  <div class="ic">▶</div>
+  <div><div class="t">通しで聞く（Audio 01–28）</div><div class="d">約10分・流しっぱなし用（通勤・家事をしながら）</div></div>
+</div>
+
+<section id="list"></section>
+
+<footer>STAGE LINE｜Yayoiさま専用｜本音声は学習目的にのみご利用ください</footer>
+
+<div class="player">
+  <div class="now"><div class="nt" id="nowT">トラックを選んでください</div><div class="tm" id="nowTm">0:00 / 0:00</div></div>
+  <input type="range" class="seek" id="seek" min="0" max="100" value="0" step="0.1">
+  <div class="ctl">
+    <button class="btn" id="loopBtn">🔁 ループ</button>
+    <button class="btn ico" id="prevBtn">⏮</button>
+    <button class="btn big" id="playBtn">▶</button>
+    <button class="btn ico" id="nextBtn">⏭</button>
+    <button class="btn" id="speedBtn">1.0×</button>
+  </div>
+  <div class="hint">速度：1.0× → 0.8×（ゆっくり）→ 1.2× の順に切り替わります</div>
+</div>
+
+<audio id="au" preload="metadata" playsinline></audio>
+
+<script>
+const TOPICS = [
+  ["May I help you?","困っている外国人観光客に声をかける"],
+  ["Which train should I take?","行き先と利用する列車を確認する"],
+  ["Where is the platform?","ホームと駅構内の場所を案内する"],
+  ["When is the next train?","次の列車の時刻と選択肢を伝える"],
+  ["Where can I buy a ticket?","切符の購入場所と支払い方法を案内する"],
+  ["Where should I change trains?","乗り換える駅と路線を順番に案内する"],
+  ["The train is delayed.","列車の遅延時間と理由を伝える"],
+  ["Train service is suspended.","運転見合わせの状況を明確に伝える"],
+  ["Because of heavy rain.","大雨・土砂崩れによる影響を説明する"],
+  ["We don't know yet.","運転再開の見込みと次の行動を伝える"],
+  ["You can take local trains.","運転見合わせ時に代替ルートを案内する"],
+  ["Where is the taxi stand?","バス乗り場とタクシー乗り場を案内する"],
+  ["Could you say that again?","聞き取れないときに聞き返し、情報を確認する"],
+  ["Let me show you the best option.","トラブル時の案内を一つの会話でまとめる"],
+];
+const MODEL_LABEL = {1:"会話全体を2回聞く",2:"会話全体を2回聞く",3:"質問のキーワードを聞き取る",4:"会話全体を2回聞く",5:"会話全体を2回聞く",6:"会話全体を2回聞く",7:"会話全体を2回聞く",8:"会話全体を2回聞く",9:"会話全体を2回聞く",10:"会話全体を2回聞く",11:"会話全体を2回聞く",12:"会話全体を2回聞く",13:"会話全体を2回聞く",14:"会話全体を2回聞く"};
+MODEL_LABEL[3]="方向・キーワードを聞き取る";
+const DUR = {1:18,2:22,3:23,4:24,5:25,6:21,7:18,8:15,9:25,10:15,11:16,12:15,13:19,14:13,15:16,16:14,17:23,18:18,19:17,20:14,21:19,22:14,23:17,24:14,25:19,26:18,27:27,28:15};
+
+const tracks = [];
+TOPICS.forEach((t,i)=>{
+  const k=i+1, a=2*k-1, b=2*k;
+  tracks.push({n:a, topic:k, kind:"model", title:`Audio ${String(a).padStart(2,"0")}｜Model Conversation`, sub:`TOPIC ${String(k).padStart(2,"0")} ${t[0]} ─ ${MODEL_LABEL[k]}`, src:`${String(a).padStart(2,"0")}.mp3`, ms:`Audio ${String(a).padStart(2,"0")} · Topic ${k} · ${t[0]}`});
+  tracks.push({n:b, topic:k, kind:"lr", title:`Audio ${String(b).padStart(2,"0")}｜Listen & Respond`, sub:`TOPIC ${String(k).padStart(2,"0")} ${t[0]} ─ ポーズで返答（3秒以内）`, src:`${String(b).padStart(2,"0")}.mp3`, ms:`Audio ${String(b).padStart(2,"0")} · Listen & Respond · ${t[0]}`});
+});
+const ALL = {n:0, title:"通しで聞く（Audio 01–28）", sub:"約10分", src:"all.mp3", ms:"Station English · All tracks"};
+
+const fmt=s=>{s=Math.max(0,Math.floor(s||0));return Math.floor(s/60)+":"+String(s%60).padStart(2,"0");};
+const list=document.getElementById("list");
+let html="";
+TOPICS.forEach((t,i)=>{
+  const k=i+1;
+  html+=`<div class="topic"><span class="no">TOPIC ${String(k).padStart(2,"0")}</span><span class="en">${t[0]}</span><span class="jp">${t[1]}</span></div>`;
+  tracks.filter(x=>x.topic===k).forEach(x=>{
+    html+=`<div class="tr ${x.kind}" data-n="${x.n}"><div class="n"><span>${String(x.n).padStart(2,"0")}</span></div><div class="lab"><div class="k">${x.kind==="model"?"Model Conversation":"Listen & Respond"}</div><div class="g">${x.kind==="model"?MODEL_LABEL[k]:"ポーズで返答・ループ推奨"}</div></div><div class="len">${fmt(DUR[x.n])}</div></div>`;
+  });
+});
+list.innerHTML=html;
+
+const au=document.getElementById("au"), playBtn=document.getElementById("playBtn"), nowT=document.getElementById("nowT"), nowTm=document.getElementById("nowTm"), seek=document.getElementById("seek"), loopBtn=document.getElementById("loopBtn"), speedBtn=document.getElementById("speedBtn"), allBtn=document.getElementById("allBtn");
+let cur=null, loop=false, speeds=[1.0,0.8,1.2], si=0;
+
+function load(t, autoplay=true){
+  cur=t;
+  au.src=t.src; au.loop=loop; au.playbackRate=speeds[si];
+  nowT.textContent=t.title;
+  document.querySelectorAll(".tr,.all").forEach(e=>e.classList.remove("playing"));
+  if(t.n===0) allBtn.classList.add("playing"); else { const el=document.querySelector(`.tr[data-n="${t.n}"]`); if(el){el.classList.add("playing");} }
+  try{localStorage.setItem("yayoi_last",String(t.n));}catch(e){}
+  if("mediaSession" in navigator){
+    navigator.mediaSession.metadata=new MediaMetadata({title:t.ms, artist:"STAGE LINE · Yayoi's Station English", album:"Audio 01–28"});
+  }
+  if(autoplay) au.play().catch(()=>{});
+}
+function idx(){return cur&&cur.n>0?tracks.findIndex(x=>x.n===cur.n):-1;}
+function next(){const i=idx(); if(i>=0&&i<tracks.length-1) load(tracks[i+1]); }
+function prev(){const i=idx(); if(au.currentTime>3){au.currentTime=0;return;} if(i>0) load(tracks[i-1]); }
+
+document.querySelectorAll(".tr").forEach(el=>el.addEventListener("click",()=>{const n=+el.dataset.n; const t=tracks.find(x=>x.n===n); if(cur&&cur.n===n){au.paused?au.play():au.pause();} else load(t);}));
+allBtn.addEventListener("click",()=>{ if(cur&&cur.n===0){au.paused?au.play():au.pause();} else load(ALL); });
+playBtn.addEventListener("click",()=>{ if(!cur){load(tracks[0]);return;} au.paused?au.play():au.pause(); });
+document.getElementById("nextBtn").addEventListener("click",next);
+document.getElementById("prevBtn").addEventListener("click",prev);
+loopBtn.addEventListener("click",()=>{loop=!loop; au.loop=loop; loopBtn.classList.toggle("on",loop);});
+speedBtn.addEventListener("click",()=>{si=(si+1)%speeds.length; au.playbackRate=speeds[si]; speedBtn.textContent=speeds[si].toFixed(1)+"×"; speedBtn.classList.toggle("on",si!==0);});
+
+au.addEventListener("play",()=>{playBtn.textContent="❚❚"; if("mediaSession" in navigator) navigator.mediaSession.playbackState="playing";});
+au.addEventListener("pause",()=>{playBtn.textContent="▶"; if("mediaSession" in navigator) navigator.mediaSession.playbackState="paused";});
+au.addEventListener("timeupdate",()=>{ if(au.duration){seek.value=au.currentTime/au.duration*100;} nowTm.textContent=fmt(au.currentTime)+" / "+fmt(au.duration); });
+au.addEventListener("ended",()=>{ if(!loop && cur && cur.n>0) next(); });
+seek.addEventListener("input",()=>{ if(au.duration) au.currentTime=seek.value/100*au.duration; });
+
+if("mediaSession" in navigator){
+  const ms=navigator.mediaSession;
+  ms.setActionHandler("play",()=>au.play());
+  ms.setActionHandler("pause",()=>au.pause());
+  ms.setActionHandler("previoustrack",prev);
+  ms.setActionHandler("nexttrack",next);
+  try{ms.setActionHandler("seekbackward",d=>{au.currentTime=Math.max(0,au.currentTime-(d.seekOffset||5));});}catch(e){}
+  try{ms.setActionHandler("seekforward",d=>{au.currentTime=Math.min(au.duration||0,au.currentTime+(d.seekOffset||5));});}catch(e){}
+  try{ms.setActionHandler("seekto",d=>{if(d.seekTime!=null) au.currentTime=d.seekTime;});}catch(e){}
+}
+
+// restore last track (no autoplay)
+try{ const l=+localStorage.getItem("yayoi_last"); if(l>0){const t=tracks.find(x=>x.n===l); if(t) load(t,false);} }catch(e){}
+</script>
+</body>
+</html>
